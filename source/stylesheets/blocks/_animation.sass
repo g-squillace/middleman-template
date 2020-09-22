@@ -1,0 +1,110 @@
+#get_scroll  
+  +at-breakpoint(lap)
+    position: fixed
+    top: 0px
+    bottom: 150px
+    left: 0
+    width: 100%
+    pointer-events: none
+
+.animation--from-bottom
+  +at-breakpoint(lap)
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, .94)
+    opacity: 0
+    position: relative
+    transform: translateY(100px)
+    &.anim, &.anim-head
+      transform: translateY(0)
+      opacity: 1!important
+      
+
+.animation--rotate
+  +at-breakpoint(lap)
+    transform: rotate(0)
+    transition: all 1.5s cubic-bezier(0.550, 0.055, 0.675, 0.190)
+    &.anim, &.anim-head
+      transform: rotate(360deg)
+
+
+.animation--opacity
+  +at-breakpoint(lap)
+    transition: all 2s cubic-bezier(0.25, 0.46, 0.45, .94)
+    opacity: 0
+    &.anim, &.anim-head
+      opacity: 1
+
+.animation--left-to-right
+  +at-breakpoint(lap)
+    opacity: 0
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, .94)
+    transform: translateX(-450px)
+    &.anim, &.anim-head
+      opacity: 1
+      transform: translateX(0)
+
+.animation--right-to-left
+  +at-breakpoint(lap)
+    opacity: 0
+    transition: all 1s cubic-bezier(0.550, 0.055, 0.675, 0.190)   
+    transform: translateX(450px)
+    &.anim, &.anim-head
+      opacity: 1
+      transform: translateX(0)
+
+  
+.animation--fade
+  +at-breakpoint(lap)
+    transition(1.5s ease-out)
+    opacity: 0
+    &.anim, &.anim-head
+      opacity: 1
+  
+.animation--bottom--to-top
+  +at-breakpoint(lap)
+    transition: all 1s cubic-bezier(0.550, 0.055, 0.675, 0.190)   
+    opacity: 0
+    transform: translateY(300px)
+    &.anim, &.anim-head
+      opacity: 1
+      transform: translateY(0)
+  
+.animation--zoom
+  +at-breakpoint(lap)
+    transition: all .5s cubic-bezier(0.25, 0.46, 0.45, .94)
+    transform: scale(.5)
+    &.anim, &.anim-head
+      transform: scale(1)
+
+  
+// @for $i from 1 to 16
+//   +at-breakpoint(lap)
+//     .animation-loop:nth-child(#{$i})
+//       transition-delay: #{$i * 0.1s}
+  
+// @keyframes image-from-right 
+//   0% 
+//     padding-left: 20%
+//   40% 
+//     transform: translateX(0)
+//   100% 
+//     transform: translateX(0)
+//     padding-left: 0
+  
+// @keyframes image-from-left 
+//   0% 
+//     padding-right: 20%
+//   40% 
+//     transform: translateX(0)
+//   100% 
+//     transform: translateX(0)
+//     padding-right: 0
+  
+// @keyframes image-from-bottom 
+//   0% 
+//     padding-top: 50%
+//   40% 
+//     transform: translateX(0)
+//   100% 
+//     transform: translateX(0)
+//     padding-top: 0
+  

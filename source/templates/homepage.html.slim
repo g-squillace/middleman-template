@@ -1,0 +1,47 @@
+/- content_for(:head)
+/  == dato_meta_tags(page)
+
+section
+  .wrap
+    h1.space--both-1= lorem.sentence
+    .formatted-content
+      = lorem.paragraphs(5)
+
+section.space--both-2
+  .wrap
+    .grid--center
+      .grid__item.desk-8-12
+        .carousel.swiper-container
+          .swiper-wrapper
+            .swiper-slide
+              picture
+                / = image_tag block.image.url(w: 10, fit: 'max', auto: 'format,compress'),
+                /   data: {'sizes': '100vw',
+                /     'src': block.image.url(w: 480, fit: 'max', auto: 'format,compress'),
+                /     'srcset': "#{block.image.url(w: 720, fit: 'max', auto: 'format,compress')} 768w,
+                /       #{block.image.url(w: 990, fit: 'max', auto: 'format,compress')} 1024w,
+                /       #{block.image.url(w: 1300, fit: 'max', auto: 'format,compress')} 1300w,
+                /       #{block.image.url(w: 1500, fit: 'max', auto: 'format,compress')} 1500w,
+                /       #{block.image.url(w: 1900, fit: 'max', auto: 'format,compress')} 1900w,
+                /       #{block.image.url(w: 2500, fit: 'max', auto: 'format,compress')} 2500w"},
+                /   alt: block.image.alt,
+                /   title: block.image.title,
+                /   class: "lazyload #{html_class}",
+                /   loading: 'lazy'
+            .swiper-slide
+              picture
+                / = image_tag block.image.url(w: 10, fit: 'max', auto: 'format,compress'),
+                /   data: {'sizes': '100vw',
+                /     'src': block.image.url(w: 480, fit: 'max', auto: 'format,compress'),
+                /     'srcset': "#{block.image.url(w: 720, fit: 'max', auto: 'format,compress')} 768w,
+                /       #{block.image.url(w: 990, fit: 'max', auto: 'format,compress')} 1024w,
+                /       #{block.image.url(w: 1300, fit: 'max', auto: 'format,compress')} 1300w,
+                /       #{block.image.url(w: 1500, fit: 'max', auto: 'format,compress')} 1500w,
+                /       #{block.image.url(w: 1900, fit: 'max', auto: 'format,compress')} 1900w,
+                /       #{block.image.url(w: 2500, fit: 'max', auto: 'format,compress')} 2500w"},
+                /   alt: block.image.alt,
+                /   title: block.image.title,
+                /   class: "lazyload #{html_class}",
+                /   loading: 'lazy'
+
+        .swiper-pagination  

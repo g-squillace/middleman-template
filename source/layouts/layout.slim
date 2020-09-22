@@ -1,14 +1,21 @@
 doctype 5
 html lang=I18n.locale
-  head = partial "partials/head"
-  body
-    .canvas
-      aside.canvas__aside--left
-        = partial "partials/aside-nav-left"
-      main.canvas__main
-        = partial "partials/site-nav"
-        = yield
-        = partial "partials/site-footer"
+  head 
+    = partial "partials/head"
+  
+  body itemscope=yield_content(:item_scope) itemType=yield_content(:item_type)
+    #get_scroll
+    .overlay  
+    header.header
+      = partial "partials/site-nav"
 
-    .svg-sprite-inliner= partial "images/sprite.svg"
+    main
+      div itemscope="" itemtype="http://schema.org/website"
+        meta itemprop="inLanguage" content=locale        
+        = yield      
+
+    = partial "partials/site-footer"
     = partial "partials/js_includes"
+
+    .svg-sprite-inliner
+      = partial "images/sprite.svg"

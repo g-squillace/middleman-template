@@ -1,9 +1,7 @@
 nav.site-nav
   .wrap
     .site-nav__inner
-      = link_to "#",
-        class: "site-nav__menu-toggler js-nav-toggler--left" do
-        = i("hamburger")
+
       .site-nav__left
         = link_to locale_path("/"),
           class: "site-nav__logo",
@@ -11,22 +9,21 @@ nav.site-nav
             = inline_svg("logo.svg", id: 'site_nav_logo', title: 'LOGO')
 
       .site-nav__right
-        .site-nav__topbar
+
+        ul.site-nav__menu
+          / - site_nav_menu.each do |page|
+          /   li.site-nav__menu__item class="#{(!page.children.blank?) ? "has-triangle" : ""}"
+          /     = active_link_to page.label,
+          /       "/#{page.slug}",
+          /       class: "site-nav__menu__link #{(!page.children.blank?) ? "js-nav-open-submenu" : ""}"
+          /     - if !page.children.blank?
+          /       = partial "partials/site-nav-dropdown",
+          /         locals: {block_class: "site-nav__menu__item__dropdown", items: page.children}
+
           = partial "partials/locale-switcher",
             locals: {block_class: "site-nav__topbar__locale-switcher"}
 
-        ul.site-nav__menu
-          li.site-nav__menu__item
-            = active_link_to t('nav.home'),
-              locale_path("/"),
-              class: "site-nav__menu__link"
+        .site-nav__menu-toggler.js-nav-toggler
+          .nav__toggler__box  
 
-          - site_nav_menu.each do |page|
-            li.site-nav__menu__item
-              = active_link_to page.menu_label,
-                locale_path(page.slug),
-                class: "site-nav__menu__link"
 
-      = link_to "#",
-        class: "site-nav__menu-toggler js-nav-toggler--right" do
-        i.icon--hamburger

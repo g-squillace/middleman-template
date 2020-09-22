@@ -45,76 +45,105 @@ configure :development do
   activate :livereload
 end
 
+require "lib/menu_helpers"
+helpers MenuHelpers
+
 helpers do
   include PathHelpers
   include ImageHelpers
 
-  # Custom helper to theme
-  def site_nav_menu
-    [
-      # dato.about_page,
-      # dato.contact_page
-    ]
+  def active?(url)
+    (url === "/#{I18n.locale}/" && current_page.url === "/#{I18n.locale}/") ||
+      (url != "/#{I18n.locale}/" && current_page.url[0...-1].eql?(url)) ||
+      url == current_page.url
   end
+
+  def active_link_to(name = nil, options = nil, html_options = {}, &block)
+    if block_given?
+      options[:class] = options.fetch(:class, "") + " is-active" if active?(name)
+      link_to capture(&block), name, options
+    else
+      html_options[:class] = html_options.fetch(:class, "") + " is-active" if active?(options)
+      link_to name, options, html_options
+    end
+  end
+
+  def favicon_json_path(path, escape = '\/')
+    image_path(path).gsub(/\//, escape)
+  end    
+
+  # def footer_menu
+  #   [
+  #     dato.page_estate,
+  #     dato.terroir,
+  #     dato.wine_index,
+  #     dato.bio,
+  #     dato.experience,
+  #     dato.contact
+  #   ]
+  # end  
+    
+  # def site_nav_menu
+  #   [
+  #     MenuHelpers::CustomMenu.new(I18n.t('nav.estate'), "#", esate_child),
+  #     dato.terroir,
+  #     dato.wine_index,
+  #     dato.bio,
+  #     MenuHelpers::CustomMenu.new(I18n.t('nav.ospitality'), "#", ospitality_child),
+  #     dato.contact
+  #   ]
+  # end
+
+  # def esate_child
+  #   [
+  #     MenuHelpers::Children.new("", "", [
+  #       dato.page_estate,
+  #       dato.project,
+  #       dato.cellar,
+  #       dato.family,
+  #       dato.cline_cellar
+  #     ])
+  #   ]
+  # end
+
+  # def ospitality_child
+  #   [
+  #     MenuHelpers::Children.new("", "", [
+  #       dato.experience,
+  #       dato.wedding,
+  #       dato.meeting
+  #     ])
+  #   ]
+  # end  
+
 end
 
-# dato.tap do |dato|
-#   dato.articles.each do |article|
-#     proxy(
-#       '/articles/#{article.slug}.html',
-#       '/templates/article.html',
-#       locals: { article: article }
-#     )
-#   end
+dato.tap do |dato|
 
-#   paginate(
-#     dato.articles.sort_by(&:published_at).reverse,
-#     '/articles',
-#     '/templates/articles.html'
-#   )
+  LOCALES.each do |locale|
+    I18n.with_locale(locale) do
+      prefix = locale == LOCALES[0] ? "" : "/#{locale}"
 
-#   MULTILANG SAMPLES
-#
-#   langs.each do |locale|
-#     I18n.with_locale(locale) do
-#       proxy "/#{locale}/index.html",
-#         "/localizable/index.html",
-#         locals: { page: dato.homepage },
-#         locale: locale
-#
-#       proxy "/#{locale}/#{dato.about_page.slug}/index.html",
-#         "/templates/about_page.html",
-#         locals: { page: dato.about_page },
-#         locale: locale
-#
-#       dato.aritcles.each do |article|
-#         I18n.locale = locale
-#         proxy "/#{locale}/articles/#{article.slug}/index.html", "/templates/article_template.html", :locals => { article: article }, ignore: true, locale: locale
-#       end
-#     end
-#   end
+      proxy "#{prefix}/index.html",
+        "/templates/homepage.html",
+        locals: { page: dato.homepage },
+        locale: locale
+        
+      # dato.news_pages.each do |news|
+      #   proxy "#{prefix}/#{news.category.slug}/#{news.slug}/index.html",
+      #     "/templates/news_page.html",
+      #     locals: { page: news },
+      #     locale: locale
+      # end  
 
-#   langs.each do |locale|
-#     I18n.with_locale(locale) do
-#       I18n.locale = locale
-#       paginate dato.articles.select{|a| a.published == true}.sort_by(&:date).reverse, "/#{I18n.locale}/articles", "/templates/articles.html", locals: { locale: I18n.locale }
-#     end
-#   end
-# end
-
-LOCALES.each do |locale|
-  I18n.with_locale(locale) do
-    prefix = locale == LOCALES[0] ? "" : "/#{locale}"
-
-    proxy "#{prefix}/index.html",
-      "/localizable/index.html",
-      locale: locale
-
-    proxy "#{prefix}/contact/index.html",
-      "templates/contact_page.html",
-      locals: { locale: I18n.locale },
-      locale: locale
+      # proxy "#{prefix}/#{dato.contact_page.slug}/index.html",
+      #   "templates/contact_page.html",
+      #   locals: { page: dato.contact_page },
+      #   locale: locale        
+    
+    end
   end
+
 end
 
 proxy "site.webmanifest",

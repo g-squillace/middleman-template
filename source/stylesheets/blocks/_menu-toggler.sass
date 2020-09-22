@@ -1,0 +1,64 @@
+.site-nav__menu-toggler
+  cursor: pointer
+  display: inline-block
+  font: inherit
+  height: 20px
+  width: 30px
+  z-index: 30
+  right: 0
+  position: absolute
+  top: 25px
+  +right(2)
+  +at-breakpoint(tab)
+    top: 25px
+  +at-breakpoint(lap)
+    display: none
+
+.js-nav-toggler
+  &:after
+    content: ""
+    border-right: none
+
+  &.is-open
+    position: fixed
+    right: 8px
+    top: 23px
+    +at-breakpoint(lap)
+      top: 32px
+    +at-breakpoint(desk)
+      right: calc((100vw - 1280px) / 2)
+      top: 40px
+    margin-right: 12px
+    .nav__toggler__box
+      transition: all 1s cubic-bezier(0.55, 0, 0.1, 1)
+      transform: translate3d(0, 10px, 0) rotate(45deg)      
+      background-color: $black-color
+      &:before
+        display: none
+      &:after
+        background-color: $black-color
+        transition: all 1s cubic-bezier(0.55, 0, 0.1, 1)
+        transform: translate3d(0, 0px, 0) rotate(-90deg)
+        width: 100%
+        left: 0
+
+.nav__toggler__box
+  +position(static, 0)
+  +base-transition("material", "base")
+  background-color: white
+  height: 2px
+  width: 100%
+  &::before,
+  &::after
+    +base-transition("material", "base")
+    background-color: white
+    content: ''
+    display: block
+    height: 2px
+    width: 100%
+  &::before
+    +position(absolute, 50% null null 0)
+    margin-top: -1px
+  &::after
+    +position(absolute, auto 0 0 auto)
+    width: 70%

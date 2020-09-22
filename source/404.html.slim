@@ -3,4 +3,16 @@ directory_index: false
 hide_from_sitemap: true
 ---
 
-h1 Page not found
+section
+  .padding--top-20.padding--bottom-8
+    .wrap
+      .flex.flex--align-center
+        .flex__item.tab-10-12
+          .title--big
+            = t("not-found.title")
+          .title
+            .margin--bottom-2
+              .title--black = t('not-found.text')
+            = link_to "/",
+              class: "button"
+              = t("not-found.button")

@@ -1,0 +1,7 @@
+- page ||=nil
+
+- blocks.each_with_index do |block, n|
+  = partial "partials/blocks/#{block.item_type.api_key}",
+    locals: {block: block, n: n}
+
+    

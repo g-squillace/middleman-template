@@ -40,38 +40,6 @@
   position: relative
   width: 60px
 
-.nav__toggler__box
-  +position(absolute, 14px null null 0.8rem)
-  +base-transition("material", "base")
-  background-color: $base-body-background
-  border-radius: 4px
-  height: 2px
-  width: 60%
-  &::before,
-  &::after
-    +base-transition("material", "base")
-    background-color: $base-body-background
-    border-radius: 4px
-    content: ''
-    display: block
-    height: 2px
-    width: 100%
-  &::before
-    +position(absolute, 14px null null 0)
-  &::after
-    +position(absolute, 28px null null 0)
-
-  .is-shifted &
-    +base-transition("material", "base")
-    transform: translate3d(0,14px,0) rotate(45deg)
-    &::before
-      +base-transition("material", "base")
-      opacity: 0
-      transform: rotate(-45deg) translate3d(-5.71429px,-6px,0)
-    &::after
-      +base-transition("material", "base")
-      transform: translate3d(0,-28px,0) rotate(-90deg)
-
 .nav__left,
 .nav__right
   align-items: center

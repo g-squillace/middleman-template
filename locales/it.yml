@@ -1,6 +1,5 @@
 it:
   iubenda_id: QQQQQQQQ
-  contact_email: "test@cantierecreativo.net"
 
   index_lang:
     it: "Versione italiana"
@@ -21,18 +20,24 @@ it:
     menu_close: "Chiudi"
 
   form:
+    id_form: ""
     label:
       first_name: "Nome"
       last_name: "Cognome"
       email: "Email"
       phone: "Telefono"
       message: "Messaggio"
-      privacy: "Privacy"
+      privacy: "Ho letto ed accetto la "
     placeholder:
       first_name: "Nome"
       last_name: "Cognome"
       email: "Email"
       phone: "Telefono"
       message: "Messaggio"
-      privacy: "Privacy"
+      privacy: "Ho letto ed accetto la "
     submit: "Invia"
+
+  not-found: 
+    title: "pagina non trovata"
+    text: "La pagina che stai cercando non esiste, o l'indirizzo inserito non è corretto."
+    button: "Vai alla pagina iniziale"

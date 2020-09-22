@@ -6,7 +6,7 @@ javascript:
   function initMap() {
     var isDraggable = jQuery(document).width() > 480 ? true : false;
     var container = document.getElementById('map');
-    var position = new google.maps.LatLng('43.769616', '11.215202');
+    var position = new google.maps.LatLng('#{dato.contact_page.map.latitude}', '#{dato.contact_page.map.longitude}');
     var map = new google.maps.Map(container, {
       zoom: 14,
       center: position,
