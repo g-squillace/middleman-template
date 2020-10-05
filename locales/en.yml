@@ -27,12 +27,17 @@ en:
       email: "Email"
       phone: "Phone"
       message: "Message"
-      privacy: "Privacy"
+      privacy: "I have read and agree to the Privacy Policy "
     placeholder:
       first_name: "Name"
       last_name: "Surname"
       email: "Email"
       phone: "Phone"
       message: "Message"
-      privacy: "Privacy"
+      privacy: "I have read and agree to the Privacy Policy "
     submit: "Send"
+
+  not-found: 
+    title: "Page not found"
+    text: "The address may be misspelled or may not exist."
+    button: "Go to the homepage"

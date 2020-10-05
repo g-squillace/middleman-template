@@ -5,7 +5,9 @@ nav.site-nav
       .site-nav__left
         = link_to locale_path("/"),
           class: "site-nav__logo",
-          title: t('nav.home')
+          title: t('nav.home'),
+          rel: "alternate",
+          hreflang: "#{locale}-#{locale}",
             = inline_svg("logo.svg", id: 'site_nav_logo', title: 'LOGO')
 
       .site-nav__right
